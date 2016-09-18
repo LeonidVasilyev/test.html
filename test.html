@@ -1,8 +1,6 @@
-
-<!-- saved from url=(0046)file:///C:/Users/vasle_000/Desktop/shell2.html -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<html>
+<head>
   <style>
-
     .editor {
       width: 76vw;
       height: 80vh;
@@ -63,17 +61,18 @@
     @font-face {
       font-family: 'athena';
       src: url('athena-regular.ttf') format('truetype');
-    }</style>
-</head><body>
+    }
+  </style>
+</head>
+<body>
   <div class="control editor" contenteditable="">// Press ctrl + return to execute.
 (function () {
   var input = readline();
   print( "Got some input here: " + input );
 })();
-</div>
+  </div>
   <div class="control input" contenteditable="">I'm some input</div>
   <div class="control output">Got some input here: I'm some input</div>
-  
   <script>
     var editor = document.getElementsByClassName( "editor" )[ 0 ];
     var input = document.getElementsByClassName( "input" )[ 0 ];
@@ -104,4 +103,7 @@
       	execute();
       	return false;
       }
-    });</script></body></html>
+    });
+  </script>
+</body>
+</html>
