@@ -74,36 +74,38 @@
   <div class="control input" contenteditable="">I'm some input</div>
   <div class="control output">Got some input here: I'm some input</div>
   <script>
-    var editor = document.getElementsByClassName( "editor" )[ 0 ];
-    var input = document.getElementsByClassName( "input" )[ 0 ];
-    var output = document.getElementsByClassName( "output" )[ 0 ];
-    var read = 0;
-    var lines;
-    var readline = function() {
-      return lines[ read++ ];
-    };
-    var print = function ( s ) {
-        output.innerHTML += "<span class='success'>" +  s + "</span>\n";
-    };
-    var printError = function ( e ) {
-        output.innerHTML += "<span class='error'>" +  e + "</span>\n";
-    };
-    var execute = function () {
-        read = 0;
-        lines = input.innerText.split( "\n" );
-        output.innerText = "";
-        try {
-          eval( editor.innerText );
-        } catch ( e ) {
-          printError ( e );
+    (function () {
+      var editor = document.getElementsByClassName( "editor" )[ 0 ];
+      var input = document.getElementsByClassName( "input" )[ 0 ];
+      var output = document.getElementsByClassName( "output" )[ 0 ];
+      var read = 0;
+      var lines;
+      var readline = function() {
+        return lines[ read++ ];
+      };
+      var print = function ( s ) {
+          output.innerHTML += "<span class='success'>" +  s + "</span>\n";
+      };
+      var printError = function ( e ) {
+          output.innerHTML += "<span class='error'>" +  e + "</span>\n";
+      };
+      var execute = function () {
+          read = 0;
+          lines = input.innerText.split( "\n" );
+          output.innerText = "";
+          try {
+            eval( editor.innerText );
+          } catch ( e ) {
+            printError ( e );
+          }
+      };
+      document.addEventListener( "keyup", function ( e ) { 
+        if ( e.ctrlKey && ( e.which == 13 || e.keyCode == 13 ) ) {
+        	execute();
+        	return false;
         }
-    };
-    document.addEventListener( "keyup", function ( e ) { 
-      if ( e.ctrlKey && ( e.which == 13 || e.keyCode == 13 ) ) {
-      	execute();
-      	return false;
-      }
-    });
+      });
+    })();
   </script>
 </body>
 </html>
