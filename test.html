@@ -65,7 +65,7 @@
   </style>
 </head>
 <body>
-  <div class="control editor" contenteditable="">// Press ctrl + return to execute.
+    <div class="control editor" contenteditable="">// Press ctrl + return to execute.
 (function () {
   var input = readline();
   print( "Got some input here: " + input );
@@ -84,10 +84,10 @@
         return lines[ read++ ];
       };
       var print = function ( s ) {
-          output.innerHTML += "<span class='success'>" +  s + "</span>\n";
+          output.innerHTML += "<span class='success'>" + s + "</span>\n";
       };
       var printError = function ( e ) {
-          output.innerHTML += "<span class='error'>" +  e + "</span>\n";
+          output.innerHTML += "<span class='error'>" + e + "</span>\n";
       };
       var execute = function () {
           read = 0;
@@ -101,10 +101,22 @@
       };
       document.addEventListener( "keyup", function ( e ) { 
         if ( e.ctrlKey && ( e.which == 13 || e.keyCode == 13 ) ) {
-        	execute();
-        	return false;
+          localStorage.setItem( "code", editor.innerHTML );
+          localStorage.setItem( "input", input.innerText );
+          execute();
+          localStorage.setItem( "output", output.innerHTML );
+          return false;
         }
       });
+      if ( localStorage.getItem( "code" ) !== null ) {
+        editor.innerHTML = localStorage.getItem( "code" );
+      }
+      if ( localStorage.getItem( "input" ) !== null ) {
+        input.innerText = localStorage.getItem( "input" );
+      }
+      if ( localStorage.getItem( "output" ) !== null ) {
+        output.innerHTML = localStorage.getItem( "output" );
+      }
     })();
   </script>
 </body>
